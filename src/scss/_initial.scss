@@ -1,0 +1,31 @@
+// Required
+@import "~bootstrap/scss/functions";
+
+// Default variable overrides
+$body-color: #000;
+$primary: #000;
+
+$red: #FF4740;
+$semi-danger: #FF9D47;
+$yellow: #FFF500;
+$semi-success: #A8BF19;
+$green: #22AF49;
+
+$headings-color: #021206;
+$headings-font-weight: bold;
+
+$btn-font-weight: bold;
+$btn-padding-x: 1.5rem;
+
+$border-radius: 0;
+
+// Required
+@import "~bootstrap/scss/variables";
+@import "~bootstrap/scss/mixins";
+
+$theme-colors: map-remove($theme-colors, "secondary", "info", "light", "dark");
+
+$theme-colors: map-merge($theme-colors, (
+  "semi-danger":$semi-danger,
+  "semi-success":$semi-success,
+));
