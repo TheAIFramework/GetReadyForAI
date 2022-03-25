@@ -1,0 +1,149 @@
+@import "initial";
+
+.steps {
+  margin: 40px 0;
+  @include media-breakpoint-up(md) {
+    margin: 80px 0;
+  }
+  @include media-breakpoint-up(lg) {
+    margin: 130px 0;
+  }
+}
+
+.step {
+  $border-width: 6px;
+  border-bottom: $border-width solid $gray-500;
+  position: relative;
+  min-width: 72px;
+
+  + .step {
+    margin-inline-start: 1rem;
+  }
+
+  @include media-breakpoint-up(lg) {
+    margin-bottom: 40px;
+    min-width: 92px;
+    + .step {
+      margin-inline-start: 1.5rem;
+    }
+  }
+  @include media-breakpoint-down(lg) {
+    &.active {
+      flex-shrink: 0;
+    }
+    &:not(.active) {
+      .step__name {
+        display: none;
+      }
+    }
+  }
+  @include media-breakpoint-down(md) {
+    min-width: 30px;
+    + .step {
+      margin-inline-start: .5rem;
+    }
+  }
+
+  &__progress {
+    content: '';
+    height: $border-width;
+    background-color: $green;
+    position: absolute;
+    bottom: -$border-width;
+    left: 0;
+  }
+}
+
+.question {
+  &__number {
+    font-size: 18px;
+  }
+
+  &__text {
+    font-size: 30px;
+  }
+}
+
+.answers {
+  margin: 50px 0;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.answer {
+  $border-width: 4px;
+
+  &__bar {
+    position: relative;
+    margin: 20px 0;
+
+    &::before {
+      content: '';
+      height: $border-width;
+      width: 100%;
+      background-color: $black;
+      position: absolute;
+      top: 50%;
+      left: 0;
+      transform: translateY(-50%);
+      z-index: -1;
+    }
+
+    input {
+      display: none;
+    }
+  }
+
+  &__number {
+    width: 24px;
+    text-align: center;
+  }
+
+  &__btn {
+    display: block;
+    height: 24px;
+    width: 24px;
+    border-radius: 50%;
+    border: $border-width solid;
+    background-color: white;
+    cursor: pointer;
+
+    @each $color, $value in $theme-colors {
+      &.#{$color} {
+        @include button-outline-variant(
+            $black,
+          $color-hover: color-contrast($value),
+          $active-background: $value,
+          $active-border: $value,
+          $active-color: color-contrast($value)
+        );
+
+        @at-root {
+          input:checked ~ & {
+            background-color: $value;
+          }
+        }
+      }
+    }
+  }
+
+  &__text {
+    &:nth-child(2) {
+      @include media-breakpoint-down(lg) {
+        display: none;
+      }
+    }
+
+    &:last-child {
+      text-align: end;
+    }
+  }
+}
+
+.actions {
+  .btn {
+    @include media-breakpoint-up(md) {
+      min-width: 160px;
+    }
+  }
+}
