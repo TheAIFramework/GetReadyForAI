@@ -1,12 +1,20 @@
 @import "initial";
 
+.back-icon {
+  width: .75rem;
+}
+
 .steps {
-  margin: 40px 0;
+  background-color: white;
+  margin: 20px 0;
+  padding: 20px 0;
   @include media-breakpoint-up(md) {
-    margin: 80px 0;
+    margin: 40px 0;
+    padding: 40px 0;
   }
   @include media-breakpoint-up(lg) {
-    margin: 130px 0;
+    margin: 65px 0;
+    padding: 65px 0;
   }
 }
 
@@ -15,14 +23,34 @@
   border-bottom: $border-width solid $gray-500;
   position: relative;
   min-width: 72px;
+  cursor: pointer;
 
   + .step {
     margin-inline-start: 1rem;
   }
 
+  &:hover {
+    .step__name {
+      transition: all 250ms;
+      transform: scale(1.05);
+    }
+  }
+
   @include media-breakpoint-up(lg) {
-    margin-bottom: 40px;
     min-width: 92px;
+    &.active {
+      position: relative;
+
+      &::after {
+        content: '';
+        position: absolute;
+        bottom: -12px;
+        left: 0;
+        width: 100%;
+        height: $border-width/2;
+        background-color: $gray-500;
+      }
+    }
     + .step {
       margin-inline-start: 1.5rem;
     }
@@ -45,7 +73,7 @@
   }
 
   &__progress {
-    content: '';
+    transition: all 250ms;
     height: $border-width;
     background-color: $green;
     position: absolute;
@@ -55,6 +83,10 @@
 }
 
 .question {
+  + .question {
+    margin-top: 150px;
+  }
+
   &__number {
     font-size: 18px;
   }
@@ -64,8 +96,11 @@
   }
 }
 
-.answers {
+.my-50 {
   margin: 50px 0;
+}
+
+.answers {
   font-size: 20px;
   font-weight: bold;
 }
@@ -138,6 +173,10 @@
       text-align: end;
     }
   }
+}
+
+label {
+  cursor: pointer;
 }
 
 .actions {

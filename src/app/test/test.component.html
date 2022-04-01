@@ -1,47 +1,70 @@
-<div class="container">
-  <section class="steps">
+<div *ngIf="!isLoading && !total && categories && form; else loaderOrResultTmp" [formGroup]="form" class="container">
+  <section class="steps position-sticky sticky-top">
+    <a (click)="backStep()" *ngIf="activeStepIdx" class="d-flex align-items-center mb-4" href="javascript:">
+      <img alt="back" class="back-icon me-2" src="assets/icons/chevron-left.svg">
+      Go back to {{prevStepTitle}}
+    </a>
     <nav class="d-flex">
-      <div *ngFor="let step of steps; index as i" [class.active]="activeStepIdx === i" class="step">
-        <h6 class="step__name">{{step}}</h6>
+      <div (click)="goToStep(i)" *ngFor="let step of categories; index as i" [class.active]="activeStepIdx === i" class="step">
+        <h6 class="step__name">{{step.title}}</h6>
         <div [ngStyle]="{width:getStepProgressWidthByIdx(i)}" class="step__progress"></div>
       </div>
     </nav>
   </section>
-  <section class="question">
-    <p class="question__number">{{activeQuestionNo}}/10</p>
-    <div class="row">
-      <div class="col-lg-8">
-        <h4 class="question__text">People working on the AI strategy are expected to contribute to onboarding resources for use by new hires.</h4>
-      </div>
-      <div class="col-lg-8">
-        <div class="answers">
-          <div class="d-flex justify-content-between">
-            <div *ngFor="let answer of answers; index as i" class="answer__number">{{i + 1}}</div>
-          </div>
-          <div class="d-flex justify-content-between answer__bar">
-            <div *ngFor="let answer of answers; index as i">
-              <input [id]="'answer_'+i" name="answer" type="radio">
-              <label [for]="'answer_'+i" [ngClass]="answer.className" class="answer__btn"></label>
+  <div class="row" formArrayName="answers">
+    <div [formArrayName]="activeStepIdx" class="col-lg-8">
+      <section *ngFor="let question of categories[activeStepIdx].questions; index as qi" [formArrayName]="qi" class="question">
+        <p class="question__number">{{qi + 1}}/{{categories[activeStepIdx].questions.length}}</p>
+        <h4 class="question__text">{{question.question}}</h4>
+        <ng-container [ngSwitch]="question.questionType">
+          <div *ngSwitchCase="questionTypes.Agree" class="answers my-50">
+            <div class="d-flex justify-content-between">
+              <label *ngFor="let answer of answers; index as i" [for]="'q_'+qi+'answer_'+i" class="answer__number">{{i + 1}}</label>
+            </div>
+            <div class="d-flex justify-content-between answer__bar">
+              <div *ngFor="let answer of answers; index as i">
+                <input [id]="'q_'+qi+'answer_'+i" [value]="i+1" formControlName="score" type="radio">
+                <label [for]="'q_'+qi+'answer_'+i" [ngClass]="answer.className" class="answer__btn"></label>
+              </div>
+            </div>
+            <div class="d-flex justify-content-between">
+              <ng-container *ngFor="let answer of answers; index as i">
+                <label *ngIf="answer.text" [for]="'q_'+qi+'answer_'+i" class="answer__text">{{answer.text}}</label>
+              </ng-container>
             </div>
           </div>
-          <div class="d-flex justify-content-between">
-            <ng-container *ngFor="let answer of answers; index as i">
-              <div *ngIf="answer.text" class="answer__text">{{answer.text}}</div>
-            </ng-container>
-          </div>
-        </div>
-        <textarea class="form-control" rows="5"></textarea>
-        <div class="mt-5">
-          <div *ngFor="let input of inputs" class="form-floating mb-3">
-            <input [id]="input.id" [placeholder]="input.label" class="form-control">
-            <label [for]="input.id" class="form-label">{{input.label}}</label>
-          </div>
-        </div>
+          <textarea *ngSwitchCase="questionTypes.FreeText" class="form-control my-50" formControlName="freeText" rows="5"></textarea>
+        </ng-container>
+      </section>
+      <div class="d-flex justify-content-end mt-4 mb-5 actions">
+        <button (click)="submitStep()" class="btn btn-primary mt-2">Submit</button>
       </div>
     </div>
-    <div class="d-flex mt-4 mb-5 actions">
-      <button class="btn btn-outline-primary mt-2">Skip</button>
-      <button class="btn btn-primary mt-2 ms-3">Submit</button>
-    </div>
-  </section>
+  </div>
 </div>
+
+<ng-template #loaderOrResultTmp>
+  <div class="vh-100 vw-100 d-flex flex-column align-items-center justify-content-center">
+    <ng-container *ngTemplateOutlet="isLoading ? loaderTmp : resultTmp"></ng-container>
+  </div>
+</ng-template>
+
+<ng-template #resultTmp>
+  <h3>Your score is</h3>
+  <h4>{{result}}/{{total}}</h4>
+</ng-template>
+
+<ng-template #loaderTmp>
+  <div class="spinner-border" role="status" style="width: 5rem; height: 5rem;">
+    <span class="visually-hidden">Loading...</span>
+  </div>
+</ng-template>
+
+<!--
+<div class="mt-5">
+  <div *ngFor="let input of inputs" class="form-floating mb-3">
+    <input [id]="input.id" [placeholder]="input.label" class="form-control">
+    <label [for]="input.id" class="form-label">{{input.label}}</label>
+  </div>
+</div>
+-->

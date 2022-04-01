@@ -1,0 +1,268 @@
+[
+  {
+    "title": "Strategy / Business Model",
+    "questions": [
+      {
+        "question": "Your company AI strategy is comprehensive.",
+        "questionType": 1,
+        "score": 5
+      },
+      {
+        "question": "Your company AI roadmap has clearly defined time bounds.",
+        "questionType": 1,
+        "score": 5
+      },
+      {
+        "question": "Your company AI roadmap has clearly defined ROI targets.",
+        "questionType": 1,
+        "score": 5
+      },
+      {
+        "question": "Your company AI roadmap is approved by the C-level executives.",
+        "questionType": 1,
+        "score": 5
+      },
+      {
+        "question": "Your company has a dedicated AI development budget.",
+        "questionType": 1,
+        "score": 5
+      },
+      {
+        "question": "Your company AI strategy is broadly known by its employees.",
+        "questionType": 1,
+        "score": 5
+      },
+      {
+        "question": "What companies are top of mind in the area of AI strategy consulting?",
+        "questionType": 2
+      },
+      {
+        "question": "Which of your peers / competitors do you think have come the furthest in their AI strategy?",
+        "questionType": 2
+      }
+    ]
+  },
+  {
+    "title": "People",
+    "questions": [
+      {
+        "question": "Your company recruits AI talent primarily through recruiting agencies.",
+        "questionType": 1,
+        "score": 1
+      },
+      {
+        "question": "New AI talents have an onboarding process to become effective quickly.",
+        "questionType": 1,
+        "score": 5
+      },
+      {
+        "question": "Your company has the AI talent in place to capitalize on the most cutting edge AI systems possible today.",
+        "questionType": 1,
+        "score": 5
+      },
+      {
+        "question": "AI talents have career development paths aimed at keeping them highly motivated.",
+        "questionType": 1,
+        "score": 5
+      },
+      {
+        "question": "Your company makes a clear distinction between centralized and decentralized AI competence.",
+        "questionType": 1,
+        "score": 5
+      },
+      {
+        "question": "Your company has a strategy for attracting more AI talent than its competitors.",
+        "questionType": 1,
+        "score": 5
+      },
+      {
+        "question": "Individuals with a history of highly successful AI projects are tasked with screening potential new hires.",
+        "questionType": 1,
+        "score": 5
+      },
+      {
+        "question": "Your company has a strategy in place for increasing the AI competence of its technical employees.",
+        "questionType": 1,
+        "score": 5
+      }
+    ]
+  },
+  {
+    "title": "Data",
+    "questions": [
+      {
+        "question": "Your company continuously produces and collects data through departments with customer contact?",
+        "questionType": 1,
+        "score": 5
+      },
+      {
+        "question": "Your company uses tools to specify and manage data-lifecycles.",
+        "questionType": 1,
+        "score": 5
+      },
+      {
+        "question": "Your company uses tools to track data-lineage.",
+        "questionType": 1,
+        "score": 5
+      },
+      {
+        "question": "Your company uses tools to version control data.",
+        "questionType": 1,
+        "score": 5
+      },
+      {
+        "question": "Your company uses tools to manage business-approved data-processing algorithms.",
+        "questionType": 1,
+        "score": 5
+      },
+      {
+        "question": "Your company uses the same tools to manage both internal and external data sources.",
+        "questionType": 1,
+        "score": 5
+      },
+      {
+        "question": "Your company controls access to data using centralized authentication and authorization.",
+        "questionType": 1,
+        "score": 5
+      },
+      {
+        "question": "Your company has a data-archiving strategy that includes everything from date formats to binary serialization.",
+        "questionType": 1,
+        "score": 5
+      }
+    ]
+  },
+  {
+    "title": "Technology",
+    "questions": [
+      {
+        "question": "Your company continuously produces and collects data through departments with customer contact?",
+        "questionType": 1,
+        "score": 5
+      },
+      {
+        "question": "Your company uses tools to specify and manage data-lifecycles.",
+        "questionType": 1,
+        "score": 5
+      },
+      {
+        "question": "Your company uses tools to track data-lineage.",
+        "questionType": 1,
+        "score": 5
+      },
+      {
+        "question": "Your company uses tools to version control data.",
+        "questionType": 1,
+        "score": 5
+      },
+      {
+        "question": "Your company uses tools to manage business-approved data-processing algorithms.",
+        "questionType": 1,
+        "score": 5
+      },
+      {
+        "question": "Your company uses the same tools to manage both internal and external data sources.",
+        "questionType": 1,
+        "score": 5
+      },
+      {
+        "question": "Your company controls access to data using centralized authentication and authorization.",
+        "questionType": 2
+      },
+      {
+        "question": "Your company has a data-archiving strategy that includes everything from date formats to binary serialization.",
+        "questionType": 2
+      }
+    ]
+  },
+  {
+    "title": "Tactics / Operations Model",
+    "questions": [
+      {
+        "question": "Your company develops AI-capabilities that are reusable.",
+        "questionType": 1,
+        "score": 5
+      },
+      {
+        "question": "Your company catalogues and tracks each AI-system lifecycle.",
+        "questionType": 1,
+        "score": 5
+      },
+      {
+        "question": "Your company monitors its AI-systems through business KPIs.",
+        "questionType": 1,
+        "score": 5
+      },
+      {
+        "question": "Your company ensures data quality through master data management.",
+        "questionType": 1,
+        "score": 5
+      },
+      {
+        "question": "Your company has separate development environments for rapid prototyping.",
+        "questionType": 1,
+        "score": 5
+      },
+      {
+        "question": "Your company architects IT systems so they can be replaced with minimal effort.",
+        "questionType": 1,
+        "score": 5
+      },
+      {
+        "question": "Your company can implement new AI capabilities more quickly than its competitors.",
+        "questionType": 1,
+        "score": 5
+      },
+      {
+        "question": "Your company requires all code to be version controlled, documented, and pass unit / integration tests",
+        "questionType": 1,
+        "score": 5
+      }
+    ]
+  },
+  {
+    "title": "Cross-Functional Abilities",
+    "questions": [
+      {
+        "question": "Your company uses AI evangelists to communicate learnings and replicate successful AI projects internally.",
+        "questionType": 1,
+        "score": 5
+      },
+      {
+        "question": "Your company has a strategy for increasing AI literacy (competence/understanding?) across non-technical personnel.",
+        "questionType": 1,
+        "score": 5
+      },
+      {
+        "question": "Your company has established industry partnerships with trusted technology experts in order to extend its AI development capabilities.",
+        "questionType": 1,
+        "score": 5
+      },
+      {
+        "question": "Your company has centralized processes to ensure compliance with privacy guidelines, GDPR, and more.",
+        "questionType": 1,
+        "score": 5
+      },
+      {
+        "question": "Your company has infosec processes in place which govern AI development.",
+        "questionType": 1,
+        "score": 5
+      },
+      {
+        "question": "Your company has a dedicated research and new-growth budget.",
+        "questionType": 1,
+        "score": 5
+      },
+      {
+        "question": "Your company leverages AI to reach sustainability goals.",
+        "questionType": 1,
+        "score": 5
+      },
+      {
+        "question": "Your company has a dedicated AI ethics manager.",
+        "questionType": 1,
+        "score": 5
+      }
+    ]
+  }
+]
