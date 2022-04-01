@@ -2,9 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { Category } from "../shared/models/category";
 import { ApiService } from "../shared/services/api.service";
 import { QuestionTypeEnum } from "../shared/enums/question-type.enum";
-import { TypedFormGroup } from "../shared/utils/typed-form-group";
+import { TypedFormArray, TypedFormGroup } from "../shared/utils/typed-form-group";
 import { TestAnswers } from "../shared/models/test-answers";
-import { FormArray, FormControl } from "@angular/forms";
+import { FormControl } from "@angular/forms";
 import { Answer } from "../shared/models/answer";
 
 @Component({
@@ -19,7 +19,7 @@ export class TestComponent implements OnInit {
     { className: 'semi-danger' },
     { text: 'Neutral', className: 'warning' },
     { className: 'semi-success' },
-    { text: 'Strongly disagree', className: 'success' },
+    { text: 'Strongly agree', className: 'success' },
   ];
   inputs = [
     { label: 'First name', id: 'firstName' },
@@ -50,8 +50,8 @@ export class TestComponent implements OnInit {
 
   initForm(categories: Category[]): void {
     this.form = new TypedFormGroup<TestAnswers>({
-      answers: new FormArray(
-        categories.map(category => new FormArray(
+      answers: new TypedFormArray<TestAnswers['answers']>(
+        categories.map(category => new TypedFormArray<TestAnswers['answers'][0]>(
             category.questions.map((question) => {
                 const controls: TypedFormGroup<Answer>['controls'] = {};
                 switch (question.questionType) {
@@ -85,12 +85,11 @@ export class TestComponent implements OnInit {
     if (!this.form) {
       return 0;
     }
-    const questions = ((this.form.controls.answers as FormArray)
-      .controls[i] as FormArray)
+    const questions = ((this.form.controls.answers as TypedFormArray<TestAnswers['answers']>)
+      .controls[i] as TypedFormArray<TestAnswers['answers'][0]>)
       .controls;
     const answeredQuestionsCount =
       questions
-        // @ts-ignore
         .filter((question: TypedFormGroup<Answer>) =>
           question.value.score || question.value.freeText
         ).length
@@ -120,13 +119,10 @@ export class TestComponent implements OnInit {
       acc += category.questions.filter(question => question.questionType === QuestionTypeEnum.Agree).length * 5;
       return acc;
     }, 0);
-    // @ts-ignore
-    this.result = (this.form.controls.answers as FormArray)
+    this.result = (this.form.controls.answers as TypedFormArray<TestAnswers['answers']>)
       .controls
-      // @ts-ignore
-      .reduce((acc, category: FormArray, ci) => {
-        // @ts-ignore
-        acc += category.controls.reduce((catAcc, answer: TypedFormGroup<Answer>, i) => {
+      .reduce((acc, category, ci) => {
+        acc += (category as TypedFormArray<TestAnswers['answers'][0]>).controls.reduce((catAcc, answer, i) => {
           const question = this.categories![ci].questions[i];
           const score = answer.value.score || 0;
           catAcc += score ? 5 - (question.score || 5) + score : 0;
