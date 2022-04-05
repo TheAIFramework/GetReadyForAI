@@ -116,7 +116,7 @@ export class TestComponent implements OnInit {
         acc += (category as TypedFormArray<TestAnswers['answers'][0]>).controls.reduce((catAcc, answer, i) => {
           const question = this.categories![ci].questions[i];
           const score = answer.value.score || 0;
-          catAcc += score ? 5 - (question.score || 5) + score : 0;
+          catAcc += score ? Math.abs(score - (question.agree ? 0 : 6)) : 0;
           return catAcc;
         }, 0)
         return acc;
