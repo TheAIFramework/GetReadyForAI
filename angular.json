@@ -65,7 +65,7 @@
                 }
               ],
               "outputHashing": "all",
-              "baseHref": "AI_Maturity_Assessment"
+              "baseHref": "/AI_Maturity_Assessment/"
             },
             "development": {
               "buildOptimizer": false,
