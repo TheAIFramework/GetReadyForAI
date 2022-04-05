@@ -64,7 +64,8 @@
                   "with": "src/environments/environment.prod.ts"
                 }
               ],
-              "outputHashing": "all"
+              "outputHashing": "all",
+              "baseHref": "AI_Maturity_Assessment"
             },
             "development": {
               "buildOptimizer": false,
