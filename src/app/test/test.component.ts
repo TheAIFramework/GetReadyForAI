@@ -21,15 +21,6 @@ export class TestComponent implements OnInit {
     { className: 'semi-success' },
     { text: 'Strongly agree', className: 'success' },
   ];
-  inputs = [
-    { label: 'First name', id: 'firstName' },
-    { label: 'Last name', id: 'lastName' },
-    { label: 'Email', id: 'email' },
-    { label: 'Title', id: 'title' },
-    { label: 'Company name', id: 'companyName' },
-    { label: 'Industry', id: 'industry' },
-    { label: 'Company size', id: 'companySize' },
-  ];
   categories?: Category[];
   questionTypes = QuestionTypeEnum;
   isLoading = true;

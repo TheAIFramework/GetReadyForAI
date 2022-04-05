@@ -1,6 +1,19 @@
-<div class="container">
-  <div class="landing-data">
-    <h1 class="w-50 pe-3">How far long are you on your AI journey?</h1>
-    <button class="btn btn-outline-primary my-4" routerLink="/test">Take the test</button>
+<div class="landing-wrapper">
+  <div class="container">
+    <div class="landing-data">
+      <ng-container *ngIf="!isUserInfoVisible; else userInfoTmp">
+        <h1 class="w-50 pe-3">How far long are you on your AI journey?</h1>
+        <button (click)="showUserInfo()" class="btn btn-outline-primary my-4">Take the test</button>
+      </ng-container>
+    </div>
   </div>
 </div>
+
+<ng-template #userInfoTmp>
+  <div class="w-50 pe-3">
+    <app-user-info #userInfoComponent></app-user-info>
+    <div class="d-flex justify-content-end">
+      <button [disabled]="userInfoComponent.form.invalid" class="btn btn-outline-primary my-4" routerLink="/test">Start the test</button>
+    </div>
+  </div>
+</ng-template>

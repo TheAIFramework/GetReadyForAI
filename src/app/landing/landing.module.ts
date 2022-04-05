@@ -3,15 +3,20 @@ import { CommonModule } from '@angular/common';
 
 import { LandingRoutingModule } from './landing-routing.module';
 import { LandingComponent } from './landing.component';
+import { UserInfoComponent } from './user-info/user-info.component';
+import { ReactiveFormsModule } from "@angular/forms";
 
 
 @NgModule({
   declarations: [
-    LandingComponent
+    LandingComponent,
+    UserInfoComponent
   ],
   imports: [
     CommonModule,
-    LandingRoutingModule
+    LandingRoutingModule,
+    ReactiveFormsModule
   ]
 })
-export class LandingModule { }
+export class LandingModule {
+}

@@ -1,0 +1,17 @@
+<h1 class="mb-4">Please fill the below form to continue</h1>
+<form [formGroup]="form">
+  <div class="row g-0">
+    <div *ngFor="let input of inputs" [class]="input.colClass" class="col-12">
+      <div *ngIf="showInput(input)" class="form-floating mb-3">
+        <ng-container [ngSwitch]="input.type">
+          <select *ngSwitchCase="inputTypes.Select" [class]="getInputClass(input)" [formControlName]="input.formControlName" [id]="input.formControlName" class="form-select">
+            <option *ngFor="let option of input.options" [value]="option.value">{{option.label}}</option>
+          </select>
+          <input *ngSwitchDefault [class]="getInputClass(input)" [formControlName]="input.formControlName" [id]="input.formControlName" [placeholder]="input.label"
+                 class="form-control">
+        </ng-container>
+        <label [for]="input.formControlName" class="form-label">{{input.label}}</label>
+      </div>
+    </div>
+  </div>
+</form>

@@ -1,9 +1,8 @@
 @import "initial";
 
-:host {
-  display: block;
+.landing-wrapper {
   position: relative;
-  height: 100vh;
+  min-height: 100vh;
 
   &::before {
     content: '';
