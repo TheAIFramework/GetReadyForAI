@@ -1,0 +1,15 @@
+@import "initial";
+
+.card {
+  &, &-title {
+    transition: all 250ms;
+  }
+
+  &:hover {
+    background-color: rgba($border-color, .25);
+
+    .card-title {
+      text-shadow: 1px 1px 0 #ccc;
+    }
+  }
+}
