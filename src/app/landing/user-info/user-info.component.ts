@@ -3,6 +3,10 @@ import { TypedFormGroup } from "@shared/utils/typed-form-group";
 import { FormControl, Validators } from "@angular/forms";
 import { User } from "@shared/models/user";
 
+interface IForm extends User {
+  acceptTerms: boolean;
+}
+
 interface IOption {
   value: string | number;
   label: string;
@@ -33,7 +37,7 @@ enum InputTypesEnum {
   styleUrls: ['./user-info.component.scss']
 })
 export class UserInfoComponent implements OnInit {
-  form: TypedFormGroup<User>;
+  form: TypedFormGroup<IForm>;
   inputs: IInput[] = [
     { label: 'First name', formControlName: 'firstName', colClass: 'col-md-6' },
     { label: 'Last name', formControlName: 'lastName', colClass: 'col-md-6', inputClass: 'border-start-0' },
@@ -88,7 +92,7 @@ export class UserInfoComponent implements OnInit {
   inputTypes = InputTypesEnum;
 
   constructor() {
-    this.form = new TypedFormGroup<User>({
+    this.form = new TypedFormGroup<IForm>({
       firstName: new FormControl(undefined, [Validators.required]),
       lastName: new FormControl(undefined, [Validators.required]),
       email: new FormControl(undefined, [Validators.required]),
@@ -97,7 +101,8 @@ export class UserInfoComponent implements OnInit {
       companyName: new FormControl(undefined, [Validators.required]),
       industry: new FormControl(undefined, [Validators.required]),
       otherIndustry: new FormControl(),
-      companySize: new FormControl(undefined, [Validators.required])
+      companySize: new FormControl(undefined, [Validators.required]),
+      acceptTerms: new FormControl(false, [Validators.requiredTrue])
     });
     this.inputs.filter(x => x.showIf).forEach(input => {
       this.form.get(input.showIf!.control)?.valueChanges.subscribe(value => {
