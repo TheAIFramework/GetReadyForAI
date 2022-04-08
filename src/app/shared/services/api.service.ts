@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from "@angular/common/http";
-import { Observable } from "rxjs";
+import { Observable, shareReplay } from "rxjs";
 import { Category } from "../models/category";
 import { TestAnswers } from "../models/test-answers";
 
@@ -8,12 +8,16 @@ import { TestAnswers } from "../models/test-answers";
   providedIn: 'root'
 })
 export class ApiService {
+  private testData$?: Observable<Category[]>;
 
   constructor(private http: HttpClient) {
   }
 
   getTestData(): Observable<Category[]> {
-    return this.http.get<Category[]>('assets/data/test-data.json');
+    if (!this.testData$) {
+      this.testData$ = this.http.get<Category[]>('assets/data/test-data.json').pipe(shareReplay());
+    }
+    return this.testData$;
   }
 
   submitAnswers(answers: TestAnswers) {
