@@ -41,8 +41,8 @@ export class TestComponent implements OnInit {
 
   initForm(categories: Category[]): void {
     this.form = new TypedFormGroup<TestAnswers>({
-      answers: new TypedFormArray<TestAnswers['answers']>(
-        categories.map(category => new TypedFormArray<TestAnswers['answers'][0]>(
+      answers: new TypedFormArray<Answer[]>(
+        categories.map(category => new TypedFormArray<Answer>(
             category.questions.map((question) => {
                 const controls: TypedFormGroup<Answer>['controls'] = {};
                 switch (question.questionType) {
@@ -76,8 +76,8 @@ export class TestComponent implements OnInit {
     if (!this.form) {
       return 0;
     }
-    const questions = ((this.form.controls.answers as TypedFormArray<TestAnswers['answers']>)
-      .controls[i] as TypedFormArray<TestAnswers['answers'][0]>)
+    const questions = ((this.form.controls.answers as TypedFormArray<Answer[]>)
+      .controls[i] as TypedFormArray<Answer>)
       .controls;
     const answeredQuestionsCount =
       questions
@@ -110,10 +110,10 @@ export class TestComponent implements OnInit {
       acc += category.questions.filter(question => question.questionType === QuestionTypeEnum.Agree).length * 5;
       return acc;
     }, 0);
-    this.result = (this.form.controls.answers as TypedFormArray<TestAnswers['answers']>)
+    this.result = (this.form.controls.answers as TypedFormArray<Answer[]>)
       .controls
       .reduce((acc, category, ci) => {
-        acc += (category as TypedFormArray<TestAnswers['answers'][0]>).controls.reduce((catAcc, answer, i) => {
+        acc += (category as TypedFormArray<Answer>).controls.reduce((catAcc, answer, i) => {
           const question = this.categories![ci].questions[i];
           const score = answer.value.score || 0;
           catAcc += score ? Math.abs(score - (question.agree ? 0 : 6)) : 0;
