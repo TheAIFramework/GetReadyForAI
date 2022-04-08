@@ -13,7 +13,7 @@ export class ApiService {
   }
 
   getTestData(): Observable<Category[]> {
-    return this.http.get<Category[]>('/assets/data/test-data.json');
+    return this.http.get<Category[]>('assets/data/test-data.json');
   }
 
   submitAnswers(answers: TestAnswers) {
