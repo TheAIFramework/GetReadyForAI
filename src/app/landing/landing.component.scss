@@ -6,7 +6,7 @@
 
   &::before {
     content: '';
-    background: url("/assets/images/landing-bg.png") center/cover;
+    background: url("~src/assets/images/landing-bg.png") center/cover;
     height: 100%;
     width: 100%;
     position: absolute;
@@ -39,7 +39,7 @@
 
   &::before {
     content: '';
-    background: url("/assets/images/landing-vector.png") top left/100% 100% no-repeat;
+    background: url("~src/assets/images/landing-vector.png") top left/100% 100% no-repeat;
     position: absolute;
     z-index: -1;
     left: 0;
