@@ -31,7 +31,7 @@ export class ResultSectionComponent implements OnInit {
           borderWidth: 2,
           pointRadius: 5,
           pointBorderWidth: 0,
-          pointBackgroundColor: '#22AF49',
+          pointBackgroundColor: ['#A8BF19', '#22AF49', '#FF9D47', '#A8BF19', '#FF4740', '#FF9D47'],
           pointHoverBackgroundColor: '#fff',
         }]
       },

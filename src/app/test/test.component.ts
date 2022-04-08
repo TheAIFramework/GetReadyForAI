@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { Category } from "../shared/models/category";
-import { ApiService } from "../shared/services/api.service";
-import { QuestionTypeEnum } from "../shared/enums/question-type.enum";
-import { TypedFormArray, TypedFormGroup } from "../shared/utils/typed-form-group";
-import { TestAnswers } from "../shared/models/test-answers";
+import { Category } from "@shared/models/category";
+import { ApiService } from "@shared/services/api.service";
+import { QuestionTypeEnum } from "@shared/enums/question-type.enum";
+import { TypedFormArray, TypedFormGroup } from "@shared/utils/typed-form-group";
+import { TestAnswers } from "@shared/models/test-answers";
 import { FormControl } from "@angular/forms";
-import { Answer } from "../shared/models/answer";
+import { Answer } from "@shared/models/answer";
 
 @Component({
   selector: 'app-test',

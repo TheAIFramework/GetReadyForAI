@@ -64,8 +64,7 @@
                   "with": "src/environments/environment.prod.ts"
                 }
               ],
-              "outputHashing": "all",
-              "baseHref": "/GetReadyForAI/"
+              "outputHashing": "all"
             },
             "development": {
               "buildOptimizer": false,

@@ -11,9 +11,6 @@
 
 <ng-template #userInfoTmp>
   <div class="w-50 pe-3">
-    <app-user-info #userInfoComponent></app-user-info>
-    <div class="d-flex justify-content-end">
-      <button [disabled]="userInfoComponent.form.invalid" class="btn btn-outline-primary my-4" routerLink="/test">Start the test</button>
-    </div>
+    <app-user-info></app-user-info>
   </div>
 </ng-template>

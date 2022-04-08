@@ -1,18 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { TypedFormGroup } from "../../shared/utils/typed-form-group";
+import { TypedFormGroup } from "@shared/utils/typed-form-group";
 import { FormControl, Validators } from "@angular/forms";
-
-interface IForm {
-  firstName: string;
-  lastName: string;
-  email: string;
-  title: string;
-  otherTitle?: string;
-  companyName: string;
-  industry: string;
-  otherIndustry?: string;
-  companySize: string;
-}
+import { User } from "@shared/models/user";
 
 interface IOption {
   value: string | number;
@@ -21,7 +10,7 @@ interface IOption {
 
 interface IInput {
   label: string;
-  formControlName: Extract<keyof IForm, string>;
+  formControlName: Extract<keyof User, string>;
   colClass?: string;
   inputClass?: string;
   type?: InputTypesEnum;
@@ -44,7 +33,7 @@ enum InputTypesEnum {
   styleUrls: ['./user-info.component.scss']
 })
 export class UserInfoComponent implements OnInit {
-  form: TypedFormGroup<IForm>;
+  form: TypedFormGroup<User>;
   inputs: IInput[] = [
     { label: 'First name', formControlName: 'firstName', colClass: 'col-md-6' },
     { label: 'Last name', formControlName: 'lastName', colClass: 'col-md-6', inputClass: 'border-start-0' },
@@ -99,7 +88,7 @@ export class UserInfoComponent implements OnInit {
   inputTypes = InputTypesEnum;
 
   constructor() {
-    this.form = new TypedFormGroup<IForm>({
+    this.form = new TypedFormGroup<User>({
       firstName: new FormControl(undefined, [Validators.required]),
       lastName: new FormControl(undefined, [Validators.required]),
       email: new FormControl(undefined, [Validators.required]),
