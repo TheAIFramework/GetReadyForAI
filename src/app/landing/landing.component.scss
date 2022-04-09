@@ -4,54 +4,40 @@
   position: relative;
   min-height: 100vh;
 
-  &::before {
-    content: '';
-    background: url("~src/assets/images/landing-bg.png") center/cover;
-    height: 100%;
-    width: 100%;
-    position: absolute;
-    right: 0;
-    z-index: -1;
-
-    @include media-breakpoint-down(lg) {
-      bottom: 0;
-      height: 50%;
-    }
-
-    @include media-breakpoint-up(lg) {
+  @include media-breakpoint-up(lg) {
+    &::before {
+      content: '';
+      background: url("~src/assets/images/landing-bg.png") center/cover;
+      height: 100%;
+      position: fixed;
+      right: 0;
+      z-index: -1;
       top: 0;
       width: 50%;
     }
   }
-
 }
 
-.landing-data {
-  padding-top: 20vh;
-  position: relative;
+.landing-bg {
+  width: 100%;
+  object-fit: cover;
   @include media-breakpoint-down(lg) {
     height: 50vh;
   }
+}
+
+.landing-data {
+  padding-top: 50px;
+  position: relative;
 
   @include media-breakpoint-up(lg) {
     padding-top: 25vh;
-  }
-
-  &::before {
-    content: '';
-    background: url("~src/assets/images/landing-vector.png") top left/100% 100% no-repeat;
-    position: absolute;
-    z-index: -1;
-    left: 0;
-
-    @include media-breakpoint-down(lg) {
-      height: 50vh;
-      width: 100%;
-      bottom: -5vh;
-      background-position-y: bottom;
-    }
-
-    @include media-breakpoint-up(lg) {
+    &::before {
+      content: '';
+      background: url("~src/assets/images/landing-vector.png") top left/100% 100% no-repeat;
+      position: absolute;
+      z-index: -1;
+      left: 0;
       height: 90vh;
       width: 80%;
       top: 5vh;
