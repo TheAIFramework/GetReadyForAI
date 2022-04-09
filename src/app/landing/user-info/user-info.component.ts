@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { TypedFormGroup } from "@shared/utils/typed-form-group";
 import { FormControl, Validators } from "@angular/forms";
 import { User } from "@shared/models/user";
+import { AppService } from "@shared/services/app.service";
+import { Router } from "@angular/router";
+import { take } from "rxjs";
 
 interface IForm extends User {
   acceptTerms: boolean;
@@ -91,7 +94,7 @@ export class UserInfoComponent implements OnInit {
   ];
   inputTypes = InputTypesEnum;
 
-  constructor() {
+  constructor(private appService: AppService, private router: Router) {
     this.form = new TypedFormGroup<IForm>({
       firstName: new FormControl(undefined, [Validators.required]),
       lastName: new FormControl(undefined, [Validators.required]),
@@ -119,6 +122,7 @@ export class UserInfoComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.appService.userInfo$.pipe(take(1)).subscribe(value => this.form.patchValue(value || {}));
   }
 
   showInput(input: IInput): boolean {
@@ -140,5 +144,13 @@ export class UserInfoComponent implements OnInit {
       classes.push('is-invalid');
     }
     return classes.join(' ');
+  }
+
+  submit() {
+    if (this.form.invalid) {
+      return;
+    }
+    this.appService.setUserInfo(this.form.value);
+    this.router.navigateByUrl('/test');
   }
 }

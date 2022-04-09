@@ -21,5 +21,5 @@
       Read our <a href="#" target="_blank">Privacy Policies</a> to learn more on how we handle your data.
     </label>
   </div>
-  <button [disabled]="form.invalid" class="btn btn-outline-primary my-4" routerLink="/test">Start the test</button>
+  <button (click)="submit()" [disabled]="form.invalid" class="btn btn-outline-primary my-4">Start the test</button>
 </form>
