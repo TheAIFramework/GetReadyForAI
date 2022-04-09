@@ -6,6 +6,7 @@ import { QuestionTypeEnum } from "@shared/enums/question-type.enum";
 import { AppService } from "@shared/services/app.service";
 import { filter, forkJoin, take } from "rxjs";
 import { TestAnswers } from "@shared/models/test-answers";
+import { Result } from "@shared/models/result";
 
 interface ExtendedCategory extends Category {
   score: number;
@@ -19,8 +20,25 @@ interface ExtendedCategory extends Category {
 export class ResultSectionComponent implements OnInit {
   total = 0;
   score = 0;
+  result?: Result;
 
   constructor(private apiService: ApiService, private appService: AppService) {
+  }
+
+  private static getScoreColor(score: number): string {
+    if (score >= 40) {
+      return '#22AF49';
+    }
+    if (score >= 30) {
+      return '#A8BF19';
+    }
+    if (score >= 20) {
+      return '#FFF500';
+    }
+    if (score >= 10) {
+      return '#FF9D47';
+    }
+    return '#FF4740'
   }
 
   ngOnInit(): void {
@@ -30,7 +48,7 @@ export class ResultSectionComponent implements OnInit {
     ]).subscribe(([categories, answers]) => this.calculateResult(categories, answers))
   }
 
-  calculateResult(categories: Category[], testAnswers: TestAnswers): void {
+  private calculateResult(categories: Category[], testAnswers: TestAnswers): void {
     const categoriesTotals = categories.map(category => category.questions.filter(question => question.questionType === QuestionTypeEnum.Agree).length * 5);
     this.total = categories.length * 50;
     const categoriesScores = testAnswers.answers
@@ -46,10 +64,11 @@ export class ResultSectionComponent implements OnInit {
       acc += categoriesScore;
       return acc;
     }, 0);
+    this.getResultObject();
     this.buildChart(categories.map((category, i) => ({ ...category, score: categoriesScores[i] })));
   }
 
-  buildChart(categories: ExtendedCategory[]): void {
+  private buildChart(categories: ExtendedCategory[]): void {
     const ctx = document.getElementById('myChart') as ChartItem;
     new Chart(ctx, {
       type: 'radar',
@@ -63,7 +82,7 @@ export class ResultSectionComponent implements OnInit {
           borderWidth: 2,
           pointRadius: 5,
           pointBorderWidth: 0,
-          pointBackgroundColor: categories.map(x => this.getScoreColor(x.score)),
+          pointBackgroundColor: categories.map(x => ResultSectionComponent.getScoreColor(x.score)),
           pointHoverBackgroundColor: '#fff',
         }]
       },
@@ -107,19 +126,16 @@ export class ResultSectionComponent implements OnInit {
     });
   }
 
-  getScoreColor(score: number): string {
-    if (score >= 40) {
-      return '#22AF49';
-    }
-    if (score >= 30) {
-      return '#A8BF19';
-    }
-    if (score >= 20) {
-      return '#FFF500';
-    }
-    if (score >= 10) {
-      return '#FF9D47';
-    }
-    return '#FF4740'
+  private getResultObject() {
+    this.apiService.getResults().subscribe(results => {
+      const sortedResults = results.sort((a, b) => a.minScore > b.minScore ? -1 : 1);
+      for (let i = 0; i < sortedResults.length; i++) {
+        const result = sortedResults[i];
+        if (this.score >= result.minScore) {
+          this.result = result;
+          break;
+        }
+      }
+    })
   }
 }

@@ -1,0 +1,24 @@
+[
+  {
+    "minScore": 250,
+    "title": "Super hero",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet assumenda dolor doloremque dolores doloribus impedit ipsa labore pariatur perferendis, quis? Beatae, eius facilis illo officiis sed veniam! A, eos laboriosam?",
+    "pointsToTake": [
+      "Lorem ipsum dolor sit amet",
+      "Duis nec mi lorem",
+      "Consectetur adipiscing",
+      "Nunc ut faucibus mi"
+    ]
+  },
+  {
+    "minScore": 0,
+    "title": "Sub zero",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet assumenda dolor doloremque dolores doloribus impedit ipsa labore pariatur perferendis, quis? Beatae, eius facilis illo officiis sed veniam! A, eos laboriosam?",
+    "pointsToTake": [
+      "Lorem ipsum dolor sit amet",
+      "Duis nec mi lorem",
+      "Consectetur adipiscing",
+      "Nunc ut faucibus mi"
+    ]
+  }
+]

@@ -4,6 +4,7 @@ import { Observable, shareReplay } from "rxjs";
 import { Category } from "../models/category";
 import { TestAnswers } from "../models/test-answers";
 import { Resource } from "@shared/models/resource";
+import { Result } from "@shared/models/result";
 
 @Injectable({
   providedIn: 'root'
@@ -23,6 +24,10 @@ export class ApiService {
 
   getResources(): Observable<Resource[]> {
     return this.http.get<Resource[]>('assets/data/resources.json');
+  }
+
+  getResults(): Observable<Result[]> {
+    return this.http.get<Result[]>('assets/data/results.json');
   }
 
   submitAnswers(answers: TestAnswers) {
