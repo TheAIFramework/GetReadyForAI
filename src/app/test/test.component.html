@@ -1,4 +1,4 @@
-<div *ngIf="!isLoading && !total && categories && form; else loaderOrResultTmp" [formGroup]="form" class="container">
+<div *ngIf="!isLoading && categories && form; else loaderTmp" [formGroup]="form" class="container">
   <section class="steps position-sticky sticky-top">
     <a (click)="backStep()" *ngIf="activeStepIdx" class="d-flex align-items-center mb-4" href="javascript:">
       <img alt="back" class="back-icon me-2" src="assets/icons/chevron-left.svg">
@@ -43,19 +43,10 @@
   </div>
 </div>
 
-<ng-template #loaderOrResultTmp>
-  <div class="vh-100 vw-100 d-flex flex-column align-items-center justify-content-center">
-    <ng-container *ngTemplateOutlet="isLoading ? loaderTmp : resultTmp"></ng-container>
-  </div>
-</ng-template>
-
-<ng-template #resultTmp>
-  <h3>Your score is</h3>
-  <h4>{{result}}/{{total}}</h4>
-</ng-template>
-
 <ng-template #loaderTmp>
-  <div class="spinner-border" role="status" style="width: 5rem; height: 5rem;">
-    <span class="visually-hidden">Loading...</span>
+  <div class="vh-100 vw-100 d-flex flex-column align-items-center justify-content-center">
+    <div class="spinner-border" role="status" style="width: 5rem; height: 5rem;">
+      <span class="visually-hidden">Loading...</span>
+    </div>
   </div>
 </ng-template>

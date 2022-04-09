@@ -6,6 +6,9 @@ import { TypedFormArray, TypedFormGroup } from "@shared/utils/typed-form-group";
 import { TestAnswers } from "@shared/models/test-answers";
 import { FormControl } from "@angular/forms";
 import { Answer } from "@shared/models/answer";
+import { AppService } from "@shared/services/app.service";
+import { take } from "rxjs";
+import { Router } from "@angular/router";
 
 @Component({
   selector: 'app-test',
@@ -25,10 +28,8 @@ export class TestComponent implements OnInit {
   questionTypes = QuestionTypeEnum;
   isLoading = true;
   form?: TypedFormGroup<TestAnswers>;
-  result = 0;
-  total = 0;
 
-  constructor(private apiService: ApiService) {
+  constructor(private apiService: ApiService, private appService: AppService, private router: Router) {
   }
 
   get prevStepTitle(): string {
@@ -59,7 +60,11 @@ export class TestComponent implements OnInit {
           )
         )
       )
-    })
+    });
+
+    this.appService.answers$.pipe(take(1)).subscribe(value => this.form?.patchValue(value || {}))
+
+    this.form.valueChanges.subscribe(value => this.appService.setAnswers(value));
   }
 
   getTestData(): void {
@@ -103,26 +108,7 @@ export class TestComponent implements OnInit {
     if (!this.form || !this.categories) {
       return;
     }
-    this.isLoading = true;
-
-    // Calculate result
-    this.total = this.categories.reduce((acc, category) => {
-      acc += category.questions.filter(question => question.questionType === QuestionTypeEnum.Agree).length * 5;
-      return acc;
-    }, 0);
-    this.result = (this.form.controls.answers as TypedFormArray<Answer[]>)
-      .controls
-      .reduce((acc, category, ci) => {
-        acc += (category as TypedFormArray<Answer>).controls.reduce((catAcc, answer, i) => {
-          const question = this.categories![ci].questions[i];
-          const score = answer.value.score || 0;
-          catAcc += score ? Math.abs(score - (question.agree ? 0 : 6)) : 0;
-          return catAcc;
-        }, 0)
-        return acc;
-      }, 0);
-
-    this.isLoading = false;
+    this.router.navigateByUrl('/test/result');
   }
 
   backStep(): void {

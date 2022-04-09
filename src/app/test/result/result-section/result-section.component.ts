@@ -2,6 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import { ApiService } from "@shared/services/api.service";
 import { Category } from "@shared/models/category";
 import Chart, { ChartItem } from "chart.js/auto";
+import { QuestionTypeEnum } from "@shared/enums/question-type.enum";
+import { AppService } from "@shared/services/app.service";
+import { filter, forkJoin, take } from "rxjs";
+import { TestAnswers } from "@shared/models/test-answers";
+
+interface ExtendedCategory extends Category {
+  score: number;
+}
 
 @Component({
   selector: 'app-result-section',
@@ -9,29 +17,53 @@ import Chart, { ChartItem } from "chart.js/auto";
   styleUrls: ['./result-section.component.scss']
 })
 export class ResultSectionComponent implements OnInit {
+  total = 0;
+  score = 0;
 
-  constructor(private apiService: ApiService) {
+  constructor(private apiService: ApiService, private appService: AppService) {
   }
 
   ngOnInit(): void {
-    this.apiService.getTestData().subscribe(categories => this.buildChart(categories))
+    forkJoin([
+      this.apiService.getTestData(),
+      this.appService.answers$.pipe(filter(Boolean), take(1))
+    ]).subscribe(([categories, answers]) => this.calculateResult(categories, answers))
   }
 
-  buildChart(categories: Category[]): void {
+  calculateResult(categories: Category[], testAnswers: TestAnswers): void {
+    const categoriesTotals = categories.map(category => category.questions.filter(question => question.questionType === QuestionTypeEnum.Agree).length * 5);
+    this.total = categories.length * 50;
+    const categoriesScores = testAnswers.answers
+      .map((category, ci) =>
+        Math.round(category.reduce((catAcc, answer, i) => {
+          const question = categories![ci].questions[i];
+          const score = answer.score || 0;
+          catAcc += score ? Math.abs(score - (question.agree ? 0 : 6)) : 0;
+          return catAcc;
+        }, 0) * 50 / categoriesTotals[ci])
+      );
+    this.score = categoriesScores.reduce((acc, categoriesScore) => {
+      acc += categoriesScore;
+      return acc;
+    }, 0);
+    this.buildChart(categories.map((category, i) => ({ ...category, score: categoriesScores[i] })));
+  }
+
+  buildChart(categories: ExtendedCategory[]): void {
     const ctx = document.getElementById('myChart') as ChartItem;
     new Chart(ctx, {
       type: 'radar',
       data: {
         labels: categories.map(x => x.title),
         datasets: [{
-          data: [40, 50, 30, 40, 10, 30],
+          data: categories.map(x => x.score),
           fill: true,
           backgroundColor: 'rgba(208, 215, 221, 0.5)',
           borderColor: 'rgb(208, 215, 221)',
           borderWidth: 2,
           pointRadius: 5,
           pointBorderWidth: 0,
-          pointBackgroundColor: ['#A8BF19', '#22AF49', '#FF9D47', '#A8BF19', '#FF4740', '#FF9D47'],
+          pointBackgroundColor: categories.map(x => this.getScoreColor(x.score)),
           pointHoverBackgroundColor: '#fff',
         }]
       },
@@ -73,5 +105,21 @@ export class ResultSectionComponent implements OnInit {
         }
       },
     });
+  }
+
+  getScoreColor(score: number): string {
+    if (score >= 40) {
+      return '#22AF49';
+    }
+    if (score >= 30) {
+      return '#A8BF19';
+    }
+    if (score >= 20) {
+      return '#FFF500';
+    }
+    if (score >= 10) {
+      return '#FF9D47';
+    }
+    return '#FF4740'
   }
 }
