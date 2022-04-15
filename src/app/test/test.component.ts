@@ -7,7 +7,7 @@ import { TestAnswers } from "@shared/models/test-answers";
 import { FormControl } from "@angular/forms";
 import { Answer } from "@shared/models/answer";
 import { AppService } from "@shared/services/app.service";
-import { take } from "rxjs";
+import { finalize, take } from "rxjs";
 import { Router } from "@angular/router";
 
 @Component({
@@ -108,7 +108,12 @@ export class TestComponent implements OnInit {
     if (!this.form || !this.categories) {
       return;
     }
-    this.router.navigateByUrl('/test/result');
+    this.isLoading = true;
+    this.apiService.submitAnswers(this.form.value)
+      .pipe(finalize(() => this.isLoading = false))
+      .subscribe(() => {
+        this.router.navigateByUrl('/test/result');
+      })
   }
 
   backStep(): void {

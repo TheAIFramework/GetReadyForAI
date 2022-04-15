@@ -4,7 +4,8 @@ import { FormControl, Validators } from "@angular/forms";
 import { User } from "@shared/models/user";
 import { AppService } from "@shared/services/app.service";
 import { Router } from "@angular/router";
-import { take } from "rxjs";
+import { finalize, take } from "rxjs";
+import { ApiService } from "@shared/services/api.service";
 
 interface IForm extends User {
   acceptTerms: boolean;
@@ -93,8 +94,9 @@ export class UserInfoComponent implements OnInit {
     },
   ];
   inputTypes = InputTypesEnum;
+  isLoading = false;
 
-  constructor(private appService: AppService, private router: Router) {
+  constructor(private appService: AppService, private router: Router, private apiService: ApiService) {
     this.form = new TypedFormGroup<IForm>({
       firstName: new FormControl(undefined, [Validators.required]),
       lastName: new FormControl(undefined, [Validators.required]),
@@ -147,10 +149,15 @@ export class UserInfoComponent implements OnInit {
   }
 
   submit() {
-    if (this.form.invalid) {
+    if (this.isLoading || this.form.invalid) {
       return;
     }
     this.appService.setUserInfo(this.form.value);
-    this.router.navigateByUrl('/test');
+    this.isLoading = true;
+    this.apiService.saveUserData(this.form.value)
+      .pipe(finalize(() => this.isLoading = false))
+      .subscribe(() => {
+        this.router.navigateByUrl('/test');
+      })
   }
 }
