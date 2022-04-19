@@ -1,24 +1,69 @@
 [
   {
-    "minScore": 250,
-    "title": "Super hero",
-    "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet assumenda dolor doloremque dolores doloribus impedit ipsa labore pariatur perferendis, quis? Beatae, eius facilis illo officiis sed veniam! A, eos laboriosam?",
-    "pointsToTake": [
-      "Lorem ipsum dolor sit amet",
-      "Duis nec mi lorem",
-      "Consectetur adipiscing",
-      "Nunc ut faucibus mi"
-    ]
+    "category": "Strategy / Business Model",
+    "title": "Next objective: increasing the impact of your AI strategy",
+    "description": "Thank you for completing the questionnaire! We will be aggregating results and communicating our findings on a regular basis in order to provide you with a better understanding of your answers as they relate to the AI industry at large.
+    
+    Organizations that are able operationalize AI effectively have high degrees of maturity in all six categories of this questionnaire. What we can establish based on your test answers is that your organization might have a weak link in the area of:
+
+    AI Strategy
+    
+    Innovation projects, and AI projects in particular, have the most impact when they directly the business model. 
+    "
   },
   {
-    "minScore": 0,
-    "title": "Sub zero",
-    "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet assumenda dolor doloremque dolores doloribus impedit ipsa labore pariatur perferendis, quis? Beatae, eius facilis illo officiis sed veniam! A, eos laboriosam?",
-    "pointsToTake": [
-      "Lorem ipsum dolor sit amet",
-      "Duis nec mi lorem",
-      "Consectetur adipiscing",
-      "Nunc ut faucibus mi"
-    ]
+    "category": "Tactics / Operations Model",
+    "title": "Operating with tactics that lead to AI success.",
+    "description": "Thank you for completing the questionnaire! We will be aggregating results and communicating our findings on a regular basis in order to provide you with a better understanding of your answers as they relate to the AI industry at large.
+    
+    Organizations that are able operationalize AI effectively have high degrees of maturity in all six categories of this questionnaire. What we can establish based on your test answers is that your organization might have a weak link in the area of:
+
+    AI Tactics
+    
+    Despite the the field of AI developing so rapidly, there are a plethora of software engineering best practices which can help create structure."
+  },
+  {
+    "category": "Data",
+    "title": "Managing data with intent.",
+    "description": "Thank you for completing the questionnaire! We will be aggregating results and communicating our findings on a regular basis in order to provide you with a better understanding of your answers as they relate to the AI industry at large. 
+    
+    Organizations that are able operationalize AI effectively have high degrees of maturity in all six categories of this questionnaire. What we can establish based on your test answers is that your organization might have a weak link in the area of:
+
+    Data Management
+    
+    Wherease data has historically been an unintended by-product of operations, becoming data driven requires your organization to think about data as if it were an asset which informs profitable AI decisions."
+  },
+  {
+    "category": "Technology",
+    "title": "Gaining a technological advantage over the competition.",
+    "description": "Thank you for completing the questionnaire! We will be aggregating results and communicating our findings on a regular basis in order to provide you with a better understanding of your answers as they relate to the AI industry at large.
+    
+    Organizations that are able operationalize AI effectively have high degrees of maturity in all six categories of this questionnaire. What we can establish based on your test answers is that your organization might have a weak link in the area of:
+
+    AI Technology
+    
+    If the goal is to leverage technology as a competitive advantage, the technology must at least be superior to that which incumbends and startups are using."
+  },
+  {
+    "category": "People",
+    "title": "Surrounding yourself with good people.",
+    "description": "Thank you for completing the questionnaire! We will be aggregating results and communicating our findings on a regular basis in order to provide you with a better understanding of your answers as they relate to the AI industry at large.
+    
+    Organizations that are able operationalize AI effectively have high degrees of maturity in all six categories of this questionnaire. What we can establish based on your test answers is that your organization might have a weak link in the area of:
+
+    People Management
+    
+    The best predictor of future success is past success. Only talent can screen for talent."
+  },
+  {
+    "category": "Cross-Functional Abilities",
+    "title": "Collaborate both within and outside of your organization.",
+    "description": "Thank you for completing the questionnaire! We will be aggregating results and communicating our findings on a regular basis in order to provide you with a better understanding of your answers as they relate to the AI industry at large.
+    
+    Organizations that are able operationalize AI effectively have high degrees of maturity in all six categories of this questionnaire. What we can establish based on your test answers is that your organization might have a weak link in the area of:
+
+    Cross-Functional Abilities
+    
+    Being able to realize the value of AI capabilities across an entire organization requires good cross-functional abilities."
   }
 ]
