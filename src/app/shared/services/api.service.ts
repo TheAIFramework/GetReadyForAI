@@ -5,12 +5,16 @@ import { Category } from "../models/category";
 import { TestAnswers } from "../models/test-answers";
 import { Resource } from "@shared/models/resource";
 import { Result } from "@shared/models/result";
+import { environment } from "../../../environments/environment";
+import { User } from "@shared/models/user";
+import { FirebaseResponse } from "@shared/models/firebase-response";
 
 @Injectable({
   providedIn: 'root'
 })
 export class ApiService {
   private testData$?: Observable<Category[]>;
+  firebaseUrl = environment.firebase.databaseUrl;
 
   constructor(private http: HttpClient) {
   }
@@ -30,7 +34,11 @@ export class ApiService {
     return this.http.get<Result[]>('assets/data/results.json');
   }
 
-  submitAnswers(answers: TestAnswers) {
+  saveUserData(user: User): Observable<FirebaseResponse> {
+    return this.http.post<FirebaseResponse>(this.firebaseUrl + 'users.json', user);
+  }
 
+  submitAnswers(answers: TestAnswers): Observable<FirebaseResponse> {
+    return this.http.post<FirebaseResponse>(this.firebaseUrl + 'answers.json', answers);
   }
 }
