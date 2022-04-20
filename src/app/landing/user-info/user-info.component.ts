@@ -4,7 +4,7 @@ import { FormControl, Validators } from "@angular/forms";
 import { User } from "@shared/models/user";
 import { AppService } from "@shared/services/app.service";
 import { Router } from "@angular/router";
-import { finalize, take } from "rxjs";
+import { finalize, Observable, take } from "rxjs";
 import { ApiService } from "@shared/services/api.service";
 
 interface IForm extends User {
@@ -41,6 +41,7 @@ enum InputTypesEnum {
   styleUrls: ['./user-info.component.scss']
 })
 export class UserInfoComponent implements OnInit {
+  savedUser?: User;
   form: TypedFormGroup<IForm>;
   inputs: IInput[] = [
     { label: 'First name', formControlName: 'firstName', colClass: 'col-md-6' },
@@ -124,7 +125,10 @@ export class UserInfoComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.appService.userInfo$.pipe(take(1)).subscribe(value => this.form.patchValue(value || {}));
+    this.appService.userInfo$.pipe(take(1)).subscribe(value => {
+      this.savedUser = value;
+      this.form.patchValue(value || {});
+    });
   }
 
   showInput(input: IInput): boolean {
@@ -152,11 +156,15 @@ export class UserInfoComponent implements OnInit {
     if (this.isLoading || this.form.invalid) {
       return;
     }
-    this.appService.setUserInfo(this.form.value);
     this.isLoading = true;
-    this.apiService.saveUserData(this.form.value)
+    const userId = this.savedUser?.id;
+    const formValue = this.form.value;
+    ((userId && formValue.email === this.savedUser?.email
+      ? this.apiService.updateUserData(userId, formValue)
+      : this.apiService.saveUserData(formValue)) as Observable<any>)
       .pipe(finalize(() => this.isLoading = false))
-      .subscribe(() => {
+      .subscribe(value => {
+        this.appService.setUserInfo({ id: userId || value.name, ...formValue });
         this.router.navigateByUrl('/test');
       })
   }
