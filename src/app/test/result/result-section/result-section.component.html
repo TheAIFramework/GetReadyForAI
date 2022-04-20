@@ -3,13 +3,15 @@
     <p>Your score is <b>{{score}}/{{total}}</b></p>
   </div>
   <div class="col-md-7">
-    <h1 class="mb-5">You are {{result?.title}}.</h1>
+    <h1 class="mb-5">{{result?.title}}.</h1>
     <p class="mb-4">{{result?.description}}</p>
 
-    <h6>Actionable points for you to take</h6>
-    <ul class="text-success fs-5">
-      <li *ngFor="let point of result?.pointsToTake"><span class="text-body fs-6">{{point}}</span></li>
-    </ul>
+    <ng-container *ngIf="result?.pointsToTake">
+      <h6>Actionable points for you to take</h6>
+      <ul class="text-success fs-5">
+        <li *ngFor="let point of result?.pointsToTake"><span class="text-body fs-6">{{point}}</span></li>
+      </ul>
+    </ng-container>
   </div>
   <div class="col-md-5">
     <canvas id="myChart" width="100%"></canvas>

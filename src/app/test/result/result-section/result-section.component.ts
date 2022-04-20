@@ -21,6 +21,7 @@ export class ResultSectionComponent implements OnInit {
   total = 0;
   score = 0;
   result?: Result;
+  private categoriesScores: number[] = [];
 
   constructor(private apiService: ApiService, private appService: AppService) {
   }
@@ -60,6 +61,7 @@ export class ResultSectionComponent implements OnInit {
           return catAcc;
         }, 0) * 50 / categoriesTotals[ci])
       );
+    this.categoriesScores = categoriesScores;
     this.score = categoriesScores.reduce((acc, categoriesScore) => {
       acc += categoriesScore;
       return acc;
@@ -128,14 +130,8 @@ export class ResultSectionComponent implements OnInit {
 
   private getResultObject() {
     this.apiService.getResults().subscribe(results => {
-      const sortedResults = results.sort((a, b) => a.minScore > b.minScore ? -1 : 1);
-      for (let i = 0; i < sortedResults.length; i++) {
-        const result = sortedResults[i];
-        if (this.score >= result.minScore) {
-          this.result = result;
-          break;
-        }
-      }
+      const minResultCategoryIdx = this.categoriesScores.indexOf(Math.min(...this.categoriesScores));
+      this.result = results[minResultCategoryIdx];
     })
   }
 }
