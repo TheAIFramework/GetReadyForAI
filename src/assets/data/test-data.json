@@ -91,7 +91,7 @@
     "title": "Data",
     "questions": [
       {
-        "question": "Your company continuously produces and collects data through departments with customer contact?",
+        "question": "Your company continuously produces data from its customer-facing services.",
         "questionType": 1,
         "agree": true
       },
@@ -136,41 +136,41 @@
     "title": "Technology",
     "questions": [
       {
-        "question": "Your company continuously produces and collects data through departments with customer contact?",
+        "question": "Your company has decoupled platforms for data storage, processing, AI deployment, and more.",
         "questionType": 1,
         "agree": true
       },
       {
-        "question": "Your company uses tools to specify and manage data-lifecycles.",
+        "question": "Your company has a standardized AI development environment.",
         "questionType": 1,
         "agree": true
       },
       {
-        "question": "Your company uses tools to track data-lineage.",
+        "question": "Your company has developer tools capable of capitalizing on the most cutting edge AI systems possible today.",
         "questionType": 1,
         "agree": true
       },
       {
-        "question": "Your company uses tools to version control data.",
+        "question": "Your company uses specialized hardware for AI development.",
         "questionType": 1,
         "agree": true
       },
       {
-        "question": "Your company uses tools to manage business-approved data-processing algorithms.",
+        "question": "Your company uses industry standard AI model formats, data formats, and interfaces for production services.",
         "questionType": 1,
         "agree": true
       },
       {
-        "question": "Your company uses the same tools to manage both internal and external data sources.",
+        "question": "Your company uses technology that is more advanced than your competitors.",
         "questionType": 1,
         "agree": true
       },
       {
-        "question": "Your company controls access to data using centralized authentication and authorization.",
+        "question": "What tooling and software are top of mind when it comes to AI technology?",
         "questionType": 2
       },
       {
-        "question": "Your company has a data-archiving strategy that includes everything from date formats to binary serialization.",
+        "question": "What company or organizations are top of mind when it comes to leading AI tooling and software?",
         "questionType": 2
       }
     ]
@@ -199,7 +199,7 @@
         "agree": true
       },
       {
-        "question": "Your company has separate development environments for rapid prototyping.",
+        "question": "Your company has a dedicated development environment for rapid prototyping.",
         "questionType": 1,
         "agree": true
       },

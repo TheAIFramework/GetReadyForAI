@@ -51,6 +51,7 @@ export class ApiService {
       this.http.put<FirebaseResponse>(this.firebaseUrl + `users/${userId}.json`,
         {
           ...user,
+          time: new Date().toString(),
           answers: categories.map((category, ci) => ({
             category: category.title,
             questions: category.questions.map((question, qi) => ({
