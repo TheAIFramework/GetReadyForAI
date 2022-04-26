@@ -45,7 +45,7 @@ export class UserInfoComponent implements OnInit {
   form: TypedFormGroup<IForm>;
   inputs: IInput[] = [
     { label: 'First name', formControlName: 'firstName', colClass: 'col-md-6' },
-    { label: 'Last name', formControlName: 'lastName', colClass: 'col-md-6', inputClass: 'border-start-0' },
+    { label: 'Last name', formControlName: 'lastName', colClass: 'col-md-6', inputClass: 'border-start-md-0' },
     { label: 'Work email', formControlName: 'email' },
     {
       label: 'Title', formControlName: 'title', type: InputTypesEnum.Select, options: [

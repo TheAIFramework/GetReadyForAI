@@ -1,0 +1,7 @@
+@import "initial";
+
+.border-start-md-0 {
+  @include media-breakpoint-up(md) {
+    border-left: 0;
+  }
+}

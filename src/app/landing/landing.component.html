@@ -1,14 +1,14 @@
 <div class="landing-wrapper">
-  <div class="container">
+  <div class="container-fluid container-lg">
     <div class="landing-data d-flex vh-100">
       <div class="row">
-        <div class="col-md-6">
+        <div class="col-lg-6">
           <ng-container *ngIf="!isUserInfoVisible; else userInfoTmp">
             <h1 class="pe-3">How far along are you on your AI journey?</h1>
             <button (click)="showUserInfo()" class="btn btn-outline-primary my-4">Take the test</button>
           </ng-container>
         </div>
-        <div class="col-md-6 p-0 d-flex flex-column d-md-none">
+        <div class="col-lg-6 p-0 d-flex flex-column d-lg-none">
           <img alt="bg" class="landing-bg mt-auto" src="assets/images/landing-bg.png">
         </div>
       </div>
@@ -17,7 +17,7 @@
 </div>
 
 <ng-template #userInfoTmp>
-  <div class="pe-md-3">
+  <div class="px-4 px-lg-0 pe-lg-3">
     <app-user-info></app-user-info>
   </div>
 </ng-template>

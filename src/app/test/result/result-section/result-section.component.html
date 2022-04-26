@@ -4,7 +4,7 @@
   </div>
   <div class="col-md-7">
     <h1 class="mb-5">{{result?.title}}.</h1>
-    <p class="mb-4">{{result?.description}}</p>
+    <p class="mb-4" [innerHTML]="result?.description"></p>
 
     <ng-container *ngIf="result?.pointsToTake">
       <h6>Actionable points for you to take</h6>
