@@ -155,6 +155,8 @@ export class UserInfoComponent implements OnInit {
 
   submit() {
     if (this.isLoading || this.form.invalid) {
+      this.form.markAllAsTouched();
+      this.form.markAsDirty();
       return;
     }
     this.isLoading = true;
