@@ -13,6 +13,9 @@ MIT
 @angular/router
 MIT
 
+angular-google-tag-manager
+MIT
+
 chart.js
 MIT
 The MIT License (MIT)
