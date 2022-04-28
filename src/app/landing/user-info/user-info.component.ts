@@ -65,6 +65,7 @@ export class UserInfoComponent implements OnInit {
     {
       label: 'Industry', formControlName: 'industry', type: InputTypesEnum.Select, options: [
         'Entertainment',
+        'Consulting',
         'Technology',
         'Health',
         'Finance',
