@@ -214,7 +214,7 @@
         "agree": true
       },
       {
-        "question": "Your company requires all code to be version controlled, documented, and pass unit / integration tests",
+        "question": "Your company requires all code to be version controlled, documented, and pass unit / integration tests.",
         "questionType": 1,
         "agree": true
       }
